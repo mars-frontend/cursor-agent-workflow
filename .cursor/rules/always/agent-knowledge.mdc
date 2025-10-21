@@ -1,0 +1,34 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+# Agent Thinking & Post-Request Feedback (Always)
+
+## Context
+
+- Ensure careful, reflective reasoning on every request
+- Enforce automatic interactive feedback run after each request
+
+## Critical Rules
+
+- Before responding, the agent MUST think carefully and reason step-by-step to ensure correctness
+  and completeness.
+- Before sending any response, the agent MUST perform a "Policy Compliance Check" against
+  `.cursor/rules/always/00-policy.mdc` Compliance Checklist and adjust the draft to comply.
+- **CRITICAL**: The Policy Compliance Check MUST verify Vietnamese language requirement is met for
+  all chat responses.
+- After completing each user request, the agent MUST run MCP Interactive Feedback for the project.
+- The feedback run MUST include a short, one-line summary of the changes or outcomes.
+- Do not skip or batch feedback runs across multiple requests.
+
+## Examples
+
+<example>
+Agent answers a feature question with a concise but well-reasoned response, then triggers MCP Interactive Feedback with summary: "Updated rules to enforce VN chat + EN files and post-request feedback."
+</example>
+
+<example type="invalid">
+Agent responds quickly without deliberate reasoning, and does not run MCP Interactive Feedback after the answer.
+</example>

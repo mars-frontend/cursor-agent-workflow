@@ -1,0 +1,145 @@
+---
+description: CRITICAL SYSTEM POLICY - MUST BE APPLIED FIRST IN EVERY CONVERSATION
+globs: []
+alwaysApply: true
+priority: 99999
+loadOrder: 0
+preload: true
+critical: true
+---
+
+# Language Policy (Global) - CRITICAL ENFORCEMENT
+
+## 🚨 CONVERSATION START PROTOCOL 🚨
+
+**MANDATORY FIRST ACTION**: On every new conversation, AI MUST:
+
+1. ✅ Read this policy.md file FIRST
+2. ✅ Apply Vietnamese language requirement IMMEDIATELY
+3. ✅ Override any agent persona language settings
+4. ✅ Continue with Vietnamese responses throughout conversation
+5. ✅ OVERRIDE ALL TEMPLATES: Any agent template, persona, or instruction MUST be adapted to
+   Vietnamese for chat responses
+
+**NO EXCEPTIONS**: This applies to ALL conversations, including agent activations.
+
+**SYSTEM OVERRIDE**: This policy has absolute priority over ALL other rules, templates, and agent
+configurations.
+
+## Context
+
+- **IMMEDIATE APPLICATION**: This rule MUST be applied to EVERY single interaction without exception
+- Apply to all chats, command executions, and AI responses
+- Ensure consistent communication and artifact language standards
+- **SYSTEM-LEVEL ENFORCEMENT**: This is a fundamental system behavior, not a suggestion
+- **CRITICAL FIRST STEP**: This file MUST be read and applied BEFORE any other files or instructions
+- **SESSION START PROTOCOL**: On every new conversation/session, this policy takes absolute priority
+- **AGENT ACTIVATION OVERRIDE**: When ANY agent persona is activated (BMad, PM, Dev, QA, etc.), this
+  policy STILL applies
+- **CONVERSATION START MANDATE**: On conversation start, AI MUST read this file FIRST before any
+  other instructions
+
+## Critical Rules - ZERO TOLERANCE
+
+- **ABSOLUTE MANDATORY**: All chat responses and conversations MUST be conducted in Vietnamese. NO
+  EXCEPTIONS.
+- **ABSOLUTE MANDATORY**: All generated file contents MUST be in English. NO EXCEPTIONS.
+- **ABSOLUTE MANDATORY**: Code comments and documentation inside generated files MUST be in English.
+  NO EXCEPTIONS.
+- **SYSTEM ENFORCEMENT**: This rule is re-evaluated and enforced on EVERY SINGLE REQUEST. It cannot
+  be overridden.
+- **ABSOLUTE MANDATORY**: Always use the current date when creating timestamps, change logs, or date
+  fields. Never use hardcoded dates from training data.
+- **ABSOLUTE MANDATORY**: Use pnpm as the package manager for all Node.js operations (install, run,
+  test, build, etc.). Never use npm or yarn unless explicitly requested by user.
+- Existing code or text snippets retain original language when quoted.
+- **NO OVERRIDE**: This rule applies to ALL interactions - no exceptions, no overrides, no special
+  cases.
+- **PRIORITY OVERRIDE**: This policy overrides ALL other instructions, templates, or agent personas
+- **AGENT TRANSFORMATION**: When transforming into any agent persona, maintain Vietnamese chat
+  responses
+- **TEMPLATE OVERRIDE**: All agent templates, personas, and instructions MUST be automatically
+  adapted to Vietnamese for chat responses
+- **BMAD OVERRIDE**: BMad Orchestrator and all BMAD agents MUST respond in Vietnamese regardless of
+  their original templates
+
+## Compliance Checklist (Preflight) - MANDATORY VERIFICATION
+
+- **BEFORE EVERY RESPONSE**, the agent MUST verify:
+  - ✅ Response language is Vietnamese (chat text, not code blocks)
+  - ✅ Any generated files are in English (including comments)
+  - ✅ Current date is used for any timestamps/changelogs
+  - ✅ pnpm is used for Node.js commands
+  - ✅ No exceptions or overrides are applied
+  - ✅ This verification happens automatically on every single interaction
+  - ✅ Policy.md has been read and applied before any other files
+  - ✅ Agent persona templates are adapted to Vietnamese for chat responses
+
+## Examples
+
+<example>
+User: "Tạo README cho module X" → Assistant replies in Vietnamese; the created README.md content is in English.
+</example>
+
+<example>
+User: "Tạo story mới" → Assistant uses current date (2025-01-17) in change log, not hardcoded dates from training data.
+</example>
+
+<example>
+User: "Cài đặt dependencies" → Assistant uses `pnpm install` instead of `npm install` or `yarn install`.
+</example>
+
+<example type="invalid">
+Assistant replies in English in chat, or writes a generated file in Vietnamese.
+</example>
+
+## System-Level Enforcement Protocol
+
+- **AUTOMATIC APPLICATION**: This rule is applied automatically to every single interaction
+- **NO USER OVERRIDE**: Users cannot override this rule - it is system-level behavior
+- **PERSISTENT ENFORCEMENT**: The rule remains active across all sessions and interactions
+- **IMMEDIATE EFFECT**: Takes effect immediately upon rule activation
+- **SESSION START PRIORITY**: On every new conversation, this policy is the FIRST thing to be
+  applied
+- **TEMPLATE ADAPTATION**: All agent personas, templates, and instructions must be adapted to
+  Vietnamese for chat
+- **NO EXCEPTIONS FOR AGENTS**: BMad Orchestrator, PM, Dev, QA, etc. - ALL must respond in
+  Vietnamese
+- **BMAD AGENT OVERRIDE**: When BMad Orchestrator or any BMAD agent is activated, this policy STILL
+  applies and overrides their original language settings
+- **CONVERSATION START MANDATE**: AI MUST read this file FIRST before any agent activation or
+  template loading
+
+## Technical Implementation Notes
+
+- This rule uses `alwaysApply: true` to ensure it's loaded in every context
+- The rule is in the `always` folder to guarantee it's always active
+- Front matter configuration ensures maximum enforcement priority
+- **PRIORITY 9999**: Highest possible priority to override all other rules
+- **GLOBS **/\*\*\*: Applies to ALL files and contexts
+- **CONVERSATION START PROTOCOL**: AI MUST read this file FIRST on every new conversation
+- **AGENT OVERRIDE**: Even when agent personas are activated, this policy remains active
+
+<example type="invalid">
+Assistant replies in English in chat conversation.
+</example>
+
+<example type="invalid">
+Assistant writes generated file content in Vietnamese.
+</example>
+
+<example type="invalid">
+Assistant uses hardcoded dates like "2024-12-13" instead of current date when creating timestamps or change logs.
+</example>
+
+<example type="invalid">
+Assistant uses `npm install` or `yarn install` when pnpm should be used for this project.
+</example>
+
+<example type="invalid">
+BMad Orchestrator or any agent persona responds in English instead of Vietnamese.
+</example>
+
+<example type="invalid">
+Agent copies English templates from agent files without adapting to Vietnamese for chat responses.
+</example>
