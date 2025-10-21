@@ -1,0 +1,11 @@
+# <!-- Powered by BMAD™ Core -->
+name: bmad-food-drink-tracker
+version: 1.0.0
+short-title: Food & Drink Tracker
+description: >-
+  Comprehensive expansion pack for tracking daily food and beverage consumption
+  with nutritional analysis, meal planning, and health insights. Includes food
+  logging agents, nutritional tracking, meal analysis, goal management, and health
+  pattern analysis.
+author: BMad Team
+slashPrefix: bmad-fdt
