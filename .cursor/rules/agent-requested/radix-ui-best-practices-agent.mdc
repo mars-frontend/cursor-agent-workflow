@@ -1,0 +1,40 @@
+# Radix UI Best Practices
+
+## Context
+
+- Provides guidelines for Radix UI component usage
+- Ensures accessibility and consistent component behavior
+- Helps maintain design system consistency
+
+## Critical Rules
+
+- Use Radix components for accessible and customizable UI elements
+- Follow the documentation for proper usage and integration
+- Ensure components are styled consistently with your design system
+- Utilize slots for flexible component composition
+- Test components for accessibility compliance
+- Import only the components you need to reduce bundle size
+- Use proper ARIA attributes and keyboard navigation
+- Implement proper focus management
+
+## Examples
+
+<example>
+  // ✅ DO: Use Radix components with proper styling
+  import { Button } from '@radix-ui/react-button';
+  
+  <Button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+    Click me
+  </Button>
+</example>
+
+<example type="invalid">
+  // ❌ DON'T: Override Radix accessibility features
+  <Button className="px-4 py-2" style={{ pointerEvents: 'none' }}>
+    Click me
+  </Button>
+</example>
+description:
+globs:
+alwaysApply: false
+---

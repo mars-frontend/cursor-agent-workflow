@@ -1,0 +1,47 @@
+# clsx Best Practices
+
+## Context
+
+- Provides guidelines for using clsx in component styling
+- Ensures clean and readable conditional class logic
+- Helps maintain consistent styling patterns
+
+## Critical Rules
+
+- Use clsx for conditional class name management to simplify JSX
+- Keep class name logic straightforward to enhance readability
+- Combine clsx with Tailwind CSS for efficient styling
+- Avoid nesting too many conditions to maintain clarity
+- Use descriptive class names to improve maintainability
+- Group related classes together for better organization
+- Use early returns for complex conditional logic
+- Document complex class combinations when necessary
+
+## Examples
+
+<example>
+  // ✅ DO: Use clsx for clean conditional classes
+  import clsx from 'clsx';
+  
+  const buttonClasses = clsx(
+    'px-4 py-2 rounded font-medium transition-colors',
+    {
+      'bg-blue-600 text-white hover:bg-blue-700': variant === 'primary',
+      'bg-gray-200 text-gray-900 hover:bg-gray-300': variant === 'secondary',
+      'px-6 py-3 text-lg': size === 'lg',
+      'px-3 py-1.5 text-sm': size === 'sm',
+    }
+  );
+</example>
+
+<example type="invalid">
+  // ❌ DON'T: Use complex string concatenation
+  const buttonClasses = 'px-4 py-2 rounded font-medium transition-colors ' +
+    (variant === 'primary' ? 'bg-blue-600 text-white hover:bg-blue-700 ' : '') +
+    (variant === 'secondary' ? 'bg-gray-200 text-gray-900 hover:bg-gray-300 ' : '') +
+    (size === 'lg' ? 'px-6 py-3 text-lg' : 'px-3 py-1.5 text-sm');
+</example>
+description:
+globs:
+alwaysApply: false
+---

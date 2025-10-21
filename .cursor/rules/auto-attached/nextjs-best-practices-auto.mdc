@@ -1,0 +1,40 @@
+# Next.js Best Practices
+
+## Context
+
+- Applies to all TypeScript and TSX files in the project
+- Ensures consistent Next.js App Router implementation
+- Maintains performance and best practices across the codebase
+
+## Critical Rules
+
+- Use App Router for better performance and simplified routing
+- Implement proper error boundaries with error.tsx files
+- Utilize dynamic routing and API routes for data management
+- Optimize images using Next.js Image component
+- Leverage Incremental Static Regeneration (ISR) when appropriate
+- Use Server Components by default, Client Components only when needed
+- Implement proper loading states with loading.tsx files
+- Follow Next.js 15.4.6 conventions and patterns
+
+## Examples
+
+<example>
+  // ✅ DO: Use App Router file structure
+  app/
+  ├── page.tsx
+  ├── layout.tsx
+  ├── loading.tsx
+  └── error.tsx
+</example>
+
+<example type="invalid">
+  // ❌ DON'T: Use Pages Router structure
+  pages/
+  ├── index.tsx
+  └── _app.tsx
+</example>
+description:
+globs:
+alwaysApply: false
+---

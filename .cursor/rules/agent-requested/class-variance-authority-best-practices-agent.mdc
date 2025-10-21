@@ -1,0 +1,59 @@
+# Class Variance Authority Best Practices
+
+## Context
+
+- Provides guidelines for managing component variants with CVA
+- Ensures consistent component styling patterns
+- Helps maintain design system scalability
+
+## Critical Rules
+
+- Use Class Variance Authority to manage conditional class names effectively
+- Define variants and default styles in a centralized manner
+- Keep class definitions organized to improve readability
+- Leverage TypeScript for type safety in class variants
+- Avoid excessive complexity in class definitions to maintain clarity
+- Use semantic variant names that describe the purpose
+- Group related variants together for better organization
+- Document complex variant combinations
+
+## Examples
+
+<example>
+  // ✅ DO: Use CVA for organized variant management
+  import { cva } from 'class-variance-authority';
+  
+  const buttonVariants = cva(
+    'px-4 py-2 rounded font-medium transition-colors',
+    {
+      variants: {
+        variant: {
+          primary: 'bg-blue-600 text-white hover:bg-blue-700',
+          secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300',
+        },
+        size: {
+          sm: 'px-3 py-1.5 text-sm',
+          lg: 'px-6 py-3 text-lg',
+        },
+      },
+      defaultVariants: {
+        variant: 'primary',
+        size: 'sm',
+      },
+    }
+  );
+</example>
+
+<example type="invalid">
+  // ❌ DON'T: Mix CVA with arbitrary class concatenation
+  const getButtonClasses = (variant: string, size: string) => {
+    let classes = 'px-4 py-2 rounded';
+    if (variant === 'primary') classes += ' bg-blue-600 text-white';
+    if (size === 'lg') classes += ' px-6 py-3';
+    return classes;
+  };
+</example>
+description:
+globs:
+alwaysApply: false
+---
