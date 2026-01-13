@@ -1,0 +1,26 @@
+name: Daily Good Morning Discord
+
+on:
+  schedule:
+    # 08:30 sáng Việt Nam (UTC+7)
+    - cron: "30 1 * * *"
+  workflow_dispatch: {} # để test thủ công
+
+jobs:
+  send-message:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Send Discord message
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          node scripts/good-morning.ts
