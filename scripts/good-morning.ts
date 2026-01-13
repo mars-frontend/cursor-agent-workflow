@@ -1,5 +1,3 @@
-// @ts-nocheck - TypeScript types not needed for runtime execution with tsx
-
 const messages = [
   "☀️ Chào buổi sáng! Chúc một ngày code mượt ✨",
   "🚀 Good morning! Ship something meaningful today",
