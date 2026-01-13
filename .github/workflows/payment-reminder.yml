@@ -1,0 +1,21 @@
+name: Payment Reminder
+
+on:
+  workflow_dispatch:
+    inputs:
+      amount:
+        required: true
+        type: string
+      author:
+        required: true
+        type: string
+      channel:
+        required: true
+        type: string
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Nhắc thanh toán ${{ inputs.amount }}"
