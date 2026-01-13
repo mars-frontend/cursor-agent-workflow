@@ -2,7 +2,7 @@
 const MENTION_REGEX = /<@!?\d+>/g
 
 // Convert số tiền có đơn vị sang số thực (VND)
-function convertToNumber(amount: string): number {
+export function convertToNumber(amount: string): number {
   const lower = amount.toLowerCase()
   
   if (lower.endsWith('k')) {
@@ -22,7 +22,7 @@ function convertToNumber(amount: string): number {
 }
 
 // Format số tiền để hiển thị
-function formatAmount(num: number): string {
+export function formatAmount(num: number): string {
   if (num >= 1000000) {
     const tr = num / 1000000
     if (tr % 1 === 0) {

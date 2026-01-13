@@ -3,6 +3,7 @@ import { Client, GatewayIntentBits, ChannelType } from "discord.js"
 import { parseAmountSummary } from "./parser.js"
 import { shouldNotify } from "./rules.js"
 import { notify } from "./notifier.js"
+import { isPaymentCommand, handlePaymentCommand } from "./payment-handler.js"
 
 const client = new Client({
   intents: [
@@ -13,7 +14,8 @@ const client = new Client({
 })
 
 client.on("messageCreate", async (msg) => {
-  const summary = parseAmountSummary(msg.content)
+  // Bỏ qua messages từ bot
+  if (msg.author.bot) return
 
   // Lấy channel name từ text channel hoặc parent channel của thread
   let channelName = ""
@@ -34,8 +36,18 @@ client.on("messageCreate", async (msg) => {
     }
   }
 
+  // Kiểm tra xem có phải command xóa nợ không
+  if (isPaymentCommand(msg.content)) {
+    const mentionedUsers = Array.from(msg.mentions.users.values())
+    const handled = await handlePaymentCommand(msg, mentionedUsers)
+    if (handled) return
+  }
+
+  // Xử lý thêm nợ như bình thường
+  const summary = parseAmountSummary(msg.content)
+
   const ok = shouldNotify({
-    isBot: msg.author.bot,
+    isBot: false,
     channelName,
     amount: summary ? summary.totalFormatted : null
   })

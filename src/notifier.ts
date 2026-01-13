@@ -1,5 +1,6 @@
 import { Message, ChannelType, TextChannel, PublicThreadChannel, PrivateThreadChannel, User } from "discord.js"
 import { AmountSummary } from "./parser.js"
+import { addDebt } from "./debt-manager.js"
 
 export async function notify(msg: Message, summary: AmountSummary, mentionedUsers: User[] = []) {
   // Lấy parent channel (text channel) từ message
@@ -37,22 +38,73 @@ export async function notify(msg: Message, summary: AmountSummary, mentionedUser
     })
   }
 
+  // Xử lý nợ cho từng user được mention
+  const debtInfo: Array<{
+    user: User
+    oldDebt: number
+    newDebt: number
+    totalDebt: number
+    oldDebtFormatted: string
+    newDebtFormatted: string
+    totalDebtFormatted: string
+  }> = []
+
+  // Thông tin người chủ nợ (người gửi message)
+  const creditor = msg.author
+
+  if (mentionedUsers.length > 0) {
+    // Cộng dồn nợ cho từng user
+    for (const user of mentionedUsers) {
+      const debt = addDebt(user.id, summary.amounts, creditor.id)
+      debtInfo.push({ user, ...debt })
+    }
+  }
+
   // Tạo nội dung thông báo
   let content = `💰 **Nhắc thanh toán**\n`
+  
+  // Thông tin người chủ nợ
+  content += `**👤 Người chủ nợ:** <@${creditor.id}> (${creditor.username})\n\n`
   
   // Thêm mentions nếu có
   if (mentionedUsers.length > 0) {
     const mentions = mentionedUsers.map(user => `<@${user.id}>`).join(' ')
-    content += `${mentions}\n\n`
+    content += `**📋 Người nợ:** ${mentions}\n\n`
   }
   
-  if (summary.amounts.length > 1) {
-    // Nếu có nhiều khoản, hiển thị chi tiết và tổng
-    content += `**Các khoản:** ${summary.amounts.join(', ')}\n`
-    content += `**Tổng cộng: ${summary.totalFormatted}**\n`
+  // Hiển thị thông tin nợ
+  if (debtInfo.length > 0) {
+    // Nếu có user được mention, hiển thị nợ cũ + mới = tổng
+    for (const info of debtInfo) {
+      if (info.oldDebt > 0) {
+        // Có nợ cũ, hiển thị cộng dồn
+        content += `**<@${info.user.id}>:**\n`
+        if (summary.amounts.length > 1) {
+          content += `  • Khoản mới: ${summary.amounts.join(', ')} (${info.newDebtFormatted})\n`
+        } else {
+          content += `  • Khoản mới: ${info.newDebtFormatted}\n`
+        }
+        content += `  • Nợ cũ: ${info.oldDebtFormatted}\n`
+        content += `  • **Tổng nợ: ${info.totalDebtFormatted}**\n\n`
+      } else {
+        // Không có nợ cũ, chỉ hiển thị khoản mới
+        content += `**<@${info.user.id}>:**\n`
+        if (summary.amounts.length > 1) {
+          content += `  • Khoản nợ: ${summary.amounts.join(', ')}\n`
+          content += `  • **Tổng: ${info.totalDebtFormatted}**\n\n`
+        } else {
+          content += `  • **Số tiền: ${info.totalDebtFormatted}**\n\n`
+        }
+      }
+    }
   } else {
-    // Nếu chỉ có 1 khoản, hiển thị đơn giản
-    content += `Số tiền được đề cập: **${summary.totalFormatted}**\n`
+    // Không có user được mention, hiển thị như cũ
+    if (summary.amounts.length > 1) {
+      content += `**Các khoản:** ${summary.amounts.join(', ')}\n`
+      content += `**Tổng cộng: ${summary.totalFormatted}**\n\n`
+    } else {
+      content += `**Số tiền:** ${summary.totalFormatted}\n\n`
+    }
   }
   
   content += `👉 Vui lòng thanh toán đúng hạn.`
