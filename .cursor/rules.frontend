@@ -1,0 +1,36 @@
+# FRONTEND RULES
+
+## Framework Discipline
+- Respect existing patterns (no mixing styles)
+- Vue: Options API / Composition API consistency
+- React: Hooks / Class component consistency
+- Preserve component hierarchy
+
+## Rendering & Hydration
+- NEVER introduce hydration mismatches
+- Preserve SSR/CSR semantics
+- Client-only code must be explicit
+- No unsafe `useEffect` / `onMounted` assumptions
+
+## State Management
+- Follow existing state strategy
+- No implicit reactivity coupling
+- Async state must be traceable
+- No hidden side effects in computed/derived state
+
+## TypeScript
+- Do NOT loosen types to fix errors
+- Prefer explicit types at boundaries
+- Never use `any` unless already present
+- Generic types must have constraints
+
+## Performance
+- No unnecessary re-renders
+- Lazy load heavy components
+- Code split by route/feature
+- Preserve existing bundle size
+
+## Accessibility
+- Maintain ARIA attributes
+- Preserve keyboard navigation
+- No semantic HTML degradation

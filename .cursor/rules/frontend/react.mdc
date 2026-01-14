@@ -1,0 +1,129 @@
+# `.cursor/rules/frontend/react.mdc` - SCOPED RULE
+
+```markdown
+---
+description: "React development guidelines with TypeScript and hooks"
+globs:
+  - "src/**/*.tsx"
+  - "src/**/*.jsx"
+  - "components/**/*.tsx"
+alwaysApply: false
+---
+
+# REACT DEVELOPMENT RULES
+
+## Framework Discipline
+- Use functional components with hooks (no class components)
+- Follow existing component structure
+- One component per file
+- Export component as default
+
+## TypeScript
+- Define prop types with interface (not type)
+- Use generic types for reusable components
+- Never use `any` unless explicitly needed
+- Prefer explicit over implicit types
+
+## State Management
+- Use `useState` for local state
+- Use context for shared state within feature
+- No prop drilling beyond 2 levels
+- Document state shape with JSDoc
+
+## Performance
+- Wrap expensive operations in `useMemo`
+- Use `useCallback` for event handlers passed to children
+- Lazy load components for routes
+- Code split by feature
+
+## Hooks Rules
+- Only call hooks at top level
+- Custom hooks must start with `use`
+- Clean up side effects in `useEffect`
+- List all dependencies in dependency array
+
+## Component Structure
+Follow this layout:
+```tsx
+// 1. Imports
+import { FC } from 'react';
+
+// 2. Types
+interface ComponentProps {
+  // ...
+}
+
+// 3. Component
+export const Component: FC = ({ prop }) => {
+  // 4. Hooks
+  const [state, setState] = useState();
+  
+  // 5. Event handlers
+  const handleClick = () => {};
+  
+  // 6. Render
+  return ;
+};
+```
+
+## Reference Pattern
+
+@component-template.tsx
+
+```markdown
+
+---
+
+### `.cursor/rules/security.mdc` - CRITICAL RULES
+
+```markdown
+---
+description: "Security and privacy constraints - non-negotiable"
+alwaysApply: true
+---
+
+# SECURITY RULES - NON-NEGOTIABLE
+
+## Secrets Management
+STOP immediately if you detect:
+- API keys in code
+- Hardcoded passwords
+- Database credentials
+- Private keys
+- OAuth tokens
+
+**Action:** Flag and request human review
+
+## Data Privacy
+- No PII/PHI in logs
+- No sensitive data in error messages
+- Redact before sending to LLM
+- No production data in prompts
+
+## Code Security
+Forbidden patterns:
+- `eval()` / `new Function()`
+- Unsafe deserialization
+- Command injection vectors
+- Path traversal vulnerabilities
+- XSS-prone `innerHTML`
+
+## Input Validation
+- Validate all user input
+- Sanitize before database queries
+- Use parameterized queries
+- Escape output in templates
+
+## Dependencies
+- No new dependencies without approval
+- Check for known CVEs
+- Prefer well-maintained packages
+- No deprecated packages
+
+## Audit Trail
+- Log all security-relevant changes
+- Document privilege escalations
+- Track data access patterns
+```
+
+---

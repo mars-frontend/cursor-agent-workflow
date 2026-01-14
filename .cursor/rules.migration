@@ -1,0 +1,33 @@
+# MIGRATION RULES
+
+## Strategy
+- Incremental ONLY (no big-bang rewrites)
+- Old and new code MUST coexist
+- Feature parity is mandatory
+- Backward compatibility required
+
+## Change Control
+- One module at a time
+- No opportunistic refactors
+- Preserve public contracts
+- Version compatibility matrix
+
+## Rollback Safety
+Every step must be:
+✓ Independently reversible
+✓ Non-destructive
+✓ Feature-flaggable (if possible)
+
+## Stop Conditions
+STOP if:
+- Behavior divergence detected
+- Hidden coupling emerges
+- Performance regression >10%
+- Test coverage drops
+
+## Documentation
+Required for each migration step:
+- Before/after comparison
+- Rollback procedure
+- Known limitations
+- Follow-up tasks

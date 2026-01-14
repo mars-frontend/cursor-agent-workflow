@@ -116,6 +116,15 @@ export async function handlePaymentCommand(
     const creditorMention = debtInfo.creditorId ? `<@${debtInfo.creditorId}>` : 'Người chủ nợ'
     
     if (isFullPayment || !paidAmount) {
+      // Option B: chỉ cho phép xóa toàn bộ nợ nếu là chủ nợ hoặc chính người nợ
+      const actorId = msg.author.id
+      const isDebtor = actorId === user.id
+      const isCreditor = !!debtInfo.creditorId && actorId === debtInfo.creditorId
+      if (!isDebtor && !isCreditor) {
+        responseContent += `❌ Không đủ quyền để xóa toàn bộ nợ của <@${user.id}> (chỉ **chủ nợ** hoặc **chính người nợ**).\n\n`
+        continue
+      }
+
       // Xóa toàn bộ nợ
       clearDebt(user.id)
       responseContent += `✅ <@${user.id}> đã thanh toán hết: **${debtInfo.totalDebtFormatted}**\n**👤 Người chủ nợ:** ${creditorMention}\n🎉 Không còn nợ!\n\n`

@@ -1,0 +1,32 @@
+# TESTING RULES
+
+## Test Preservation
+- NEVER delete tests without approval
+- Maintain or improve coverage
+- Prefer extending over rewriting
+
+## Test Quality
+- Tests must be deterministic
+- No flaky tests
+- No test interdependencies
+- Fast execution (<5s per suite)
+
+## Coverage Requirements
+- New code: 80% coverage minimum
+- Critical paths: 100% coverage
+- Edge cases documented
+
+## Test Types
+Unit tests:
+- Pure function logic
+- Component behavior
+- Utility functions
+
+Integration tests:
+- API contracts
+- Database interactions
+- External service mocks
+
+E2E tests:
+- Critical user flows
+- Only for high-value scenarios

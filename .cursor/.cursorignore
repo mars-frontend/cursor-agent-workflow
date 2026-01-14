@@ -1,0 +1,38 @@
+# Dependencies (too noisy for context)
+node_modules/
+vendor/
+.pnpm-store/
+
+# Build artifacts
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# Generated files
+*.generated.ts
+*.auto.ts
+coverage/
+*.log
+
+# Large data files
+*.csv
+*.json.gz
+fixtures/
+
+# Sensitive
+.env*
+*.key
+*.pem
+secrets/
+credentials/
+
+# Test snapshots (too noisy)
+**/__snapshots__/
+
+# Documentation (use sparingly)
+docs/archive/
+
+# CI artifacts
+.github/workflows/cache/

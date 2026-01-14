@@ -1,0 +1,69 @@
+# `.cursor/AGENTS.md` - AGENT-SPECIFIC CONFIG
+
+```markdown
+# AGENT CONFIGURATION
+
+This file configures agent-specific behaviors in Cursor.
+
+## Model Preferences
+
+### Primary Model
+Claude Sonnet 4 - for complex reasoning and architecture decisions
+
+### Fast Model
+Claude Haiku - for quick refactors and simple fixes
+
+### Specialized Tasks
+- Code generation: Claude Sonnet
+- Code review: GPT-4 Turbo
+- Documentation: Claude Sonnet
+
+## Context Management
+
+### Maximum Context Size
+- Keep context under 20k tokens
+- Use @mentions for targeted context
+- Prefer specific files over full codebase
+
+### Context Priority
+1. Current file
+2. Referenced files (@filename)
+3. Active rules
+4. Related modules
+
+## Behavior Preferences
+
+### Communication Style
+- Concise and technical
+- No unnecessary explanation
+- Bullet points for lists
+- Code examples when helpful
+
+### Code Generation
+- Prefer existing patterns
+- Follow project conventions
+- Minimal diffs
+- Self-documenting code
+
+### Error Handling
+- Stop on ambiguity
+- Ask for clarification
+- Never guess requirements
+- Document assumptions
+
+## Safety Settings
+
+### Auto-apply Limits
+- Max 10 files changed per session
+- Max 500 lines per file
+- Require approval for breaking changes
+
+### Protected Paths
+Never modify without explicit approval:
+- `/src/auth/**`
+- `/migrations/**`
+- `/.github/workflows/**`
+- `/config/production/**`
+```
+
+---

@@ -1,0 +1,30 @@
+# BACKEND RULES
+
+## Architecture Boundaries
+- Domain logic must be framework-agnostic
+- Infrastructure concerns stay isolated
+- No cross-layer dependencies
+
+## Data Integrity
+- No silent schema changes
+- Validate input/output boundaries
+- Preserve transaction semantics
+- No orphaned data
+
+## Error Handling
+- Do NOT swallow errors
+- Preserve error context
+- No generic catch-all blocks
+- Log critical paths
+
+## Security
+- Input validation required
+- SQL injection prevention
+- No hardcoded credentials
+- Rate limiting awareness
+
+## Performance
+- No N+1 queries
+- Database index awareness
+- Cache invalidation strategy
+- Connection pool management

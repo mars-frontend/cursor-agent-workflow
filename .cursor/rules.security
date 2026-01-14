@@ -1,0 +1,36 @@
+# SECURITY RULES - NON-NEGOTIABLE
+
+## Secrets Management
+STOP immediately if you detect:
+- API keys in code
+- Hardcoded passwords
+- Database credentials
+- Private keys
+- OAuth tokens
+
+Action: Flag and request human review
+
+## Data Privacy
+- No PII/PHI in logs
+- No sensitive data in error messages
+- Redact before sending to LLM
+- No production data in prompts
+
+## Code Security
+Forbidden patterns:
+- eval() / Function()
+- Unsafe deserialization
+- Command injection vectors
+- Path traversal vulnerabilities
+- XSS-prone innerHTML
+
+## Dependencies
+- No new dependencies without approval
+- Check for known CVEs
+- Prefer well-maintained packages
+- No deprecated packages
+
+## Audit Trail
+- Log all security-relevant changes
+- Document privilege escalations
+- Track data access patterns

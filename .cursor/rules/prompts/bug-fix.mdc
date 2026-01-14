@@ -1,0 +1,65 @@
+# `.cursor/rules/prompts/bug-fix.mdc` - TASK TEMPLATE
+
+```markdown
+---
+description: "Use when investigating and fixing bugs"
+alwaysApply: false
+---
+
+# BUG FIX WORKFLOW
+
+Read and obey all .cursor rules.
+
+## Required Information
+- **Bug description:** {{what is broken}}
+- **Expected behavior:** {{what should happen}}
+- **Actual behavior:** {{what actually happens}}
+- **Reproduction steps:** {{how to reproduce}}
+
+## Process
+
+### Phase 1: Root Cause Analysis
+**Do NOT fix immediately**
+
+1. Trace execution flow
+2. Identify why it happens
+3. List potential causes
+4. Gather evidence (logs, stack trace)
+
+**Output:** Root cause explanation with evidence
+
+### Phase 2: Propose Solution
+1. Explain fix approach
+2. Show minimal patch
+3. Highlight side effects
+4. List test cases needed
+
+**Output:** Fix proposal with impact analysis
+
+### Phase 3: Wait for Approval
+Human checkpoint before implementation
+
+### Phase 4: Implement Fix
+1. Apply minimal change
+2. Add test coverage
+3. Document edge cases
+4. Verify no regression
+
+## Verification Checklist
+- [ ] Bug no longer reproduces
+- [ ] No regression in related features
+- [ ] Test coverage added
+- [ ] Error handling improved
+- [ ] Documentation updated
+
+## Stop Conditions
+If you encounter:
+- Multiple possible root causes
+- Fix requires breaking changes
+- Impact unclear
+- Security implications
+
+→ STOP and request clarification
+```
+
+---

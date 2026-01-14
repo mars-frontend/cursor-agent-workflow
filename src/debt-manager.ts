@@ -31,7 +31,7 @@ function ensureDataDir() {
 }
 
 // Đọc dữ liệu nợ từ file
-function loadDebts(): Record<string, DebtRecord> {
+export function loadDebts(): Record<string, DebtRecord> {
   ensureDataDir()
   
   if (!existsSync(DEBT_FILE)) {
